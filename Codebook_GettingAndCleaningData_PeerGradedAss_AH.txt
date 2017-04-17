@@ -1,0 +1,60 @@
+Codebook to peergraded assignment (Data Science, Week 4) on wearables data
+
+What did i do with the data?
+
+Get Started
+# Load relevant librarys into R
+# Unzip data and store
+# Read and understand provided information on activity data set by Samsung wearables
+
+###### Task 1. Merges the training and the test sets to create one data set
+# Names: Column names for columns 1-561 of "x_..." are contained in features.txt
+
+# Read Train data in, append the labels & subject identifier, provide names of features.txt to each column
+# Merge train data
+
+# Read Train data in, append the labels & subject identifier, provide names of features.txt to each column
+# Merge train data
+
+## Merge test and train datasets
+
+###### 2. Extracts only the measurements on the mean and standard deviation for each measurement.
+# Find the Integer Column numbers of the relevant data
+
+###### 3. Uses descriptive activity names to name the activities in the data set
+# Read in activities
+# Rename activities
+
+###### 4. Appropriately labels the data set with descriptive variable names.
+
+###### 5. From the data set in step 4, creates a second, independent tidy data set 
+######    with the average of each variable for each activity and each subject.
+
+# Store result
+# The columns result$labels and result$subject indicate the values applied for each row. Each row hence contains the mean data for a specific combination of label and subject.
+# End
+
+
+
+How did i name the variables?
+
+The naming distinguishes: 
+- acceleration - body acceleration signals using "acceleration" in the variable name and
+- gyroscope - angular velocity measured by the gyroscope as "gyroscope" and
+- angles - the denotation "angles" describes an angle between the 3-dimensional vectors of 2 variables
+
+Mean values and standard deviations
+- in case a variable is a standard deviation (std) it is denoted in the very end of the variable name as "std"
+- all other variables are mean values of the respective measurement
+
+Time and frequency
+- in case the value returns the frequency of a measurement in 50hz (1/50s), this is indicated by "freq"
+- all other variables are time measurements
+
+Directions
+- in case a variable is measured only in a specific direction, the direction is indicated in the end of the variable by e.g. "x" or "x_std"
+
+Jerk and Magnitude measurements
+- In case the magnitude or the jerk was measured, this is indicated in the varialble name.
+
+
