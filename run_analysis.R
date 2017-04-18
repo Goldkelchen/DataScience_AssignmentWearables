@@ -7,14 +7,15 @@ library(reshape2)
 ###### Get Started
 # Unzip data and store
 # Read and understand provided information on activity data set by Samsung wearables
+# set working directory
+setwd('H:/Programming/Coursera_Lib/GettingAndCleaningData/Week4/peergraded/UCI HAR Dataset')
 
 ###### 1. Merges the training and the test sets to create one data set
 # Names: Column names for columns 1-561 of "x_..." are contained in features.txt
-setwd('H:/Programming/Coursera_Lib/GettingAndCleaningData/Week4/peergraded/UCI HAR Dataset')
 feature_names <- read.table('features.txt',header = FALSE)
 
 # Read Train data in, append the labels & subject identifier, provide names of features.txt to each column
-setwd('H:/Programming/Coursera_Lib/GettingAndCleaningData/Week4/peergraded/UCI HAR Dataset/train')
+setwd('./train')
 y_train <- read.table('y_train.txt', header = FALSE)
 names(y_train)[1]<-"lables"
 train_subject <- read.table('subject_train.txt', header = FALSE)
@@ -24,7 +25,7 @@ x_train <- read.table('x_train.txt', header = FALSE)
 train_merge <- cbind(x_train, y_train, train_subject)
 
 # Read Train data in, append the labels & subject identifier, provide names of features.txt to each column
-setwd('H:/Programming/Coursera_Lib/GettingAndCleaningData/Week4/peergraded/UCI HAR Dataset/test')
+setwd('./test')
 y_test <- read.table('y_test.txt', header = FALSE)
 names(y_test)[1]<-"lables"
 test_subject <- read.table('subject_test.txt', header = FALSE)
@@ -35,7 +36,7 @@ test_merge <- cbind(x_test, y_test, test_subject)
 
 ## Merge test and train datasets
 merge_all <- rbind(train_merge,test_merge)
-
+write.table(merge_all, "output_task1.txt", row.name=FALSE)
 
 ###### 2. Extracts only the measurements on the mean and standard deviation for each measurement.
 # Find the Integer Column numbers of the relevant data
@@ -45,7 +46,7 @@ data <- select(merge_all, c(std_mean,562,563))
 feature_names$V2[std_mean]
 ###### 3. Uses descriptive activity names to name the activities in the data set
 # Read in activities
-setwd('H:/Programming/Coursera_Lib/GettingAndCleaningData/Week4/peergraded/UCI HAR Dataset')
+setwd('..')
 # Rename activities
 activity_names <- read.table('activity_labels.txt',header = FALSE)
 activity_names$V3 <- c("walk", "walk up", "walk down", "sit", "stand", "lay")
@@ -107,8 +108,12 @@ k = k+1
   } 
 }
 
+for (i in 1:6) {
+result_means$labels[result_means$labels == i] <- activity_names$V3[i]
+}
+
 ###### Store result
 # Labels and Subjects are indicated in the last 2 columns, named: "labels" and "subject".
-setwd('H:/Programming/Coursera_Lib/GettingAndCleaningData/Week4/peergraded')
+setwd('..')
 write.table(result_means, "result_means.txt", row.name=FALSE)
 # End
